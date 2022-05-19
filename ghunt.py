@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from lib import modwall; modwall.check() # We check the requirements
+from lib import modwall;modwall.check()  # We check the requirements
 
 import sys
 import os
@@ -12,14 +12,14 @@ from modules.doc import doc_hunt
 from modules.email import email_hunt
 from modules.gaia import gaia_hunt
 from modules.youtube import youtube_hunt
-
+from modules.name import name_hunt
 
 if __name__ == "__main__":
-    
+
     # We change the current working directory to allow using GHunt from anywhere
     os.chdir(Path(__file__).parents[0])
 
-    modules = ["email", "doc", "gaia", "youtube"]
+    modules = ["email", "doc", "gaia", "youtube", "name"]
 
     if len(sys.argv) <= 1 or sys.argv[1].lower() not in modules:
         print("Please choose a module.\n")
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     if len(sys.argv) >= 3:
         data = sys.argv[2]
     else:
-        data = None 
+        data = None
 
     if module == "email":
         email_hunt(data)
@@ -42,3 +42,5 @@ if __name__ == "__main__":
         gaia_hunt(data)
     elif module == "youtube":
         youtube_hunt(data)
+    elif module == "name":
+        name_hunt(data)

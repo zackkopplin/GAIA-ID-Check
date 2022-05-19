@@ -91,7 +91,8 @@ def is_email_google_account(httpx_client, auth, cookies, email, hangouts_token):
         pprint(data)
         exit()
     elif not "matches" in data:
-        exit("[-] This email address does not belong to a Google Account.")
+        return data
+        # exit("[-] This email address does not belong to a Google Account.")
 
     return data
 
