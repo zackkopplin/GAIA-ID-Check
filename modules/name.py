@@ -25,8 +25,7 @@ from unidecode import unidecode
 structure = ["first!!", "f!!last!!", "f!!.last!!", "f!!_last!!", "last!!f!!", "last!!.f!!", "last!!_f!!", "l!!first!!",
              "l!!.first!!", "l!!_first!!", "first!!l!!", "first!!.l!!", "first!!_l!!", "last!!first!!",
              "last!!.first!!", "last!!_first!!", "first!!last!!", "first!!.last!!", "first!!_last!!", "first!!last!!1",
-             "first!!last!!.1", "f!!last!!1", "f!!last!!.1", "first!!.last!!1", "first!!.last!!.1", "first!!last!!2",
-             "first!!last!!.2", "f!!last!!2", "f!!last!!.2", "first!!.last!!2", "first!!.last!!.2"]
+             "first!!last!!.1", "f!!last!!1", "f!!last!!.1", "first!!.last!!1", "first!!.last!!.1"]
 
 
 def prepare_emails(name, domain="gmail.com", birth_input=""):
@@ -122,7 +121,7 @@ def prepare_emails(name, domain="gmail.com", birth_input=""):
 
 
 def bruteforce_email(name, client, hangouts_auth,
-                     hangouts_token, cookies):
+                     hangouts_token, cookies, gaiaID):
     possible_emails = prepare_emails(name)
 
 
@@ -132,15 +131,16 @@ def bruteforce_email(name, client, hangouts_auth,
 
         if data:
             for match in data['matches']:
-                # print(match['personId'][0])
                 print( Fore.GREEN + email + Fore.RESET)
+                if match['personId'][0] == gaiaID:
+                    print(Fore.GREEN + "MATCH!!!!!!!!" + Fore.RESET)
                 # return match['lookupId']
         else:
             print(Fore.RED + email + Fore.RESET)
 
     return ""
 
-def name_hunt(name):
+def name_hunt(name, gaiaID):
     banner()
 
     if not name:
@@ -173,4 +173,4 @@ def name_hunt(name):
     # get name & other info
     print("Trying to find email...")
     email_based_on_gaiaid = bruteforce_email(name=name, client=client, hangouts_auth=hangouts_auth,
-                     hangouts_token=hangouts_token, cookies=cookies)
+                     hangouts_token=hangouts_token, cookies=cookies, gaiaID=gaiaID)

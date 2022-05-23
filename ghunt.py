@@ -29,8 +29,9 @@ if __name__ == "__main__":
         exit()
 
     module = sys.argv[1].lower()
-    if len(sys.argv) >= 3:
+    if len(sys.argv) >= 4:
         data = sys.argv[2]
+        gaiaid = sys.argv[3]
     else:
         data = None
 
@@ -43,4 +44,4 @@ if __name__ == "__main__":
     elif module == "youtube":
         youtube_hunt(data)
     elif module == "name":
-        name_hunt(data)
+        name_hunt(data, gaiaid)
