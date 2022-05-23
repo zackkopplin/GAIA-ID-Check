@@ -128,15 +128,16 @@ def bruteforce_email(name, client, hangouts_auth,
 
         if data:
             for match in data['matches']:
-                # print(match['personId'][0])
                 print( Fore.GREEN + email + Fore.RESET)
+                if match['personId'][0] == gaiaID:
+                    print(Fore.GREEN + "MATCH!!!!!!!!" + Fore.RESET)
                 # return match['lookupId']
         else:
             print(Fore.RED + email + Fore.RESET)
 
     return ""
 
-def name_hunt(name):
+def name_hunt(name, gaiaID):
     banner()
 
     if not name:
@@ -169,4 +170,4 @@ def name_hunt(name):
     # get name & other info
     print("Trying to find email...")
     email_based_on_gaiaid = bruteforce_email(name=name, client=client, hangouts_auth=hangouts_auth,
-                     hangouts_token=hangouts_token, cookies=cookies)
+                     hangouts_token=hangouts_token, cookies=cookies, gaiaID=gaiaID)
