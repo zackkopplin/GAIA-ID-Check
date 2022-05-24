@@ -119,7 +119,7 @@ def prepare_emails(name, domain="gmail.com", birth_input=""):
 
 
 def bruteforce_email(name, client, hangouts_auth,
-                     hangouts_token, cookies):
+                     hangouts_token, cookies, gaiaID):
     possible_emails = prepare_emails(name)
 
 
